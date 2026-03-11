@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nusa Wise - Pengaturan Sistem Daerah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-slate-50 font-sans antialiased text-slate-900">
+    <div class="flex h-screen overflow-hidden">
+        
+        <aside class="w-64 bg-slate-900 text-white flex flex-col hidden md:flex shadow-xl z-10">
+            <div class="h-20 flex items-center justify-center border-b border-slate-800 px-6">
+                <div>
+                    <h2 class="font-bold text-2xl tracking-wide text-blue-400">NUSA<span class="text-white">WISE</span></h2>
+                    <p class="text-xs text-slate-400 mt-1">Gov & Regulator Portal</p>
+                </div>
+            </div>
+            <nav class="flex-1 p-4 space-y-2 overflow-y-auto mt-4">
+                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 px-4">Menu Utama</p>
+                <a href="index.html" class="block px-4 py-3 hover:bg-slate-800 rounded-md text-slate-300 transition-colors">Ringkasan Eksekutif</a>
+                <a href="monitor.html" class="block px-4 py-3 hover:bg-slate-800 rounded-md text-slate-300 transition-colors">Monitor PAD Terpusat</a>
+                <a href="lalu-lintas-qris.html" class="block px-4 py-3 hover:bg-slate-800 rounded-md text-slate-300 transition-colors">Lalu Lintas QRIS</a>
+                
+                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 mt-6 px-4">Tata Kelola & ESG</p>
+                <a href="ecowatch.html" class="block px-4 py-3 hover:bg-slate-800 rounded-md text-slate-300 transition-colors">Peta EcoWatch (AI)</a>
+                <a href="audit.html" class="block px-4 py-3 hover:bg-slate-800 rounded-md text-slate-300 transition-colors">Audit & Integrasi Pusdatin</a>
+
+                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 mt-6 px-4">Konfigurasi</p>
+                <a href="pengaturan.html" class="block px-4 py-3 bg-blue-600/20 text-blue-400 border-l-4 border-blue-500 rounded-r-md font-medium">Kebijakan Daerah</a>
+            </nav>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto relative" x-data="{ activeTab: 'keuangan' }">
+            
+            <header class="bg-white shadow-sm h-20 flex items-center justify-between px-8 sticky top-0 z-20">
+                <h1 class="text-2xl font-bold text-slate-800">Pengaturan Kebijakan Daerah</h1>
+                <div class="flex items-center gap-4">
+                    <span class="bg-slate-100 text-slate-600 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 border border-slate-200">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                        Otorisasi: Kepala Dinas
+                    </span>
+                </div>
+            </header>
+
+            <div class="p-8 max-w-5xl">
+                <div class="flex space-x-6 border-b border-slate-200 mb-8">
+                    <button @click="activeTab = 'keuangan'" 
+                            :class="activeTab === 'keuangan' ? 'border-blue-600 text-blue-600 font-bold' : 'border-transparent text-slate-500 hover:text-slate-700 font-medium'" 
+                            class="pb-3 px-1 border-b-2 text-sm transition">
+                        Keuangan & PAD
+                    </button>
+                    <button @click="activeTab = 'ekologi'" 
+                            :class="activeTab === 'ekologi' ? 'border-emerald-600 text-emerald-600 font-bold' : 'border-transparent text-slate-500 hover:text-slate-700 font-medium'" 
+                            class="pb-3 px-1 border-b-2 text-sm transition">
+                        Kebijakan Ekologi (EcoWatch)
+                    </button>
+                    <button @click="activeTab = 'akses'" 
+                            :class="activeTab === 'akses' ? 'border-purple-600 text-purple-600 font-bold' : 'border-transparent text-slate-500 hover:text-slate-700 font-medium'" 
+                            class="pb-3 px-1 border-b-2 text-sm transition">
+                        Manajemen Akses Pegawai
+                    </button>
+                </div>
+
+                <div x-show="activeTab === 'keuangan'" x-transition.opacity class="space-y-8">
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                        <div class="p-6 border-b border-slate-100 bg-slate-50">
+                            <h2 class="text-lg font-bold text-slate-800">Pengaturan Aliran Kas Daerah (Kasda)</h2>
+                            <p class="text-sm text-slate-500 mt-1">Konfigurasi potongan pajak hiburan swasta dan rekening tujuan retribusi.</p>
+                        </div>
+                        <div class="p-6 space-y-6">
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Rekening Kas Umum Daerah (RKUD)</label>
+                                <div class="flex gap-3">
+                                    <input type="text" value="001-8827-1122-00 (Bank Jatim)" class="w-full border border-slate-300 rounded-lg p-3 text-sm text-slate-700 bg-slate-50 focus:outline-none" readonly>
+                                    <button class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg font-medium transition border border-slate-200 whitespace-nowrap">Ajukan Perubahan</button>
+                                </div>
+                                <p class="text-xs text-slate-400 mt-2">*Perubahan nomor rekening memerlukan persetujuan BPKAD dan validasi pusat.</p>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-bold text-slate-700 mb-2">Pajak Hiburan Default (Destinasi Swasta)</label>
+                                    <div class="relative">
+                                        <input type="number" value="10" class="w-full border border-slate-300 rounded-lg p-3 text-sm text-slate-700 focus:ring-2 focus:ring-blue-500 outline-none transition pr-8">
+                                        <span class="absolute right-4 top-3 text-slate-500 font-bold">%</span>
+                                    </div>
+                                    <p class="text-xs text-slate-500 mt-2">Dipotong otomatis dari transaksi destinasi non-pemerintah.</p>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-slate-700 mb-2">Siklus Settlement (Penarikan Dana)</label>
+                                    <select class="w-full border border-slate-300 rounded-lg p-3 text-sm text-slate-700 focus:ring-2 focus:ring-blue-500 outline-none transition">
+                                        <option>H+1 (Setiap Hari Kerja)</option>
+                                        <option>Mingguan (Setiap Hari Senin)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                        <div class="p-6 border-b border-slate-100 bg-indigo-50/50">
+                            <h2 class="text-lg font-bold text-slate-800">Integrasi Nasional & Audit</h2>
+                            <p class="text-sm text-slate-500 mt-1">Pengaturan sinkronisasi data dengan Pemerintah Pusat (Kemenparekraf).</p>
+                        </div>
+                        <div class="p-6 space-y-5">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-bold text-slate-800 text-sm">Auto-Sync Sisparnas (Pusdatin Kemenparekraf)</h4>
+                                    <p class="text-xs text-slate-500 mt-1">Kirim otomatis agregasi data kunjungan dan metrik ekosistem daerah ke pusat setiap pukul 03:00 WIB.</p>
+                                </div>
+                                <div class="w-12 h-6 bg-blue-600 rounded-full relative cursor-pointer">
+                                    <div class="w-4 h-4 bg-white rounded-full absolute top-1 right-1 shadow-sm"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div x-show="activeTab === 'ekologi'" x-transition.opacity class="space-y-8" style="display: none;">
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                        <div class="p-6 border-b border-slate-100 bg-emerald-50/50">
+                            <h2 class="text-lg font-bold text-slate-800">Ambang Batas Peringatan Dini Ekologi</h2>
+                            <p class="text-sm text-slate-500 mt-1">Atur parameter otomatisasi untuk AI Recommender dan deteksi EcoWatch.</p>
+                        </div>
+                        <div class="p-6 space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-bold text-slate-700 mb-2">Batas Kritis Kapasitas Wisata</label>
+                                    <div class="relative">
+                                        <input type="number" value="85" class="w-full border border-slate-300 rounded-lg p-3 text-sm text-slate-700 focus:ring-2 focus:ring-emerald-500 outline-none transition pr-8">
+                                        <span class="absolute right-4 top-3 text-slate-500 font-bold">%</span>
+                                    </div>
+                                    <p class="text-xs text-slate-500 mt-2">AI akan menyetop promosi dan mengalihkan wisatawan jika kapasitas tercapai.</p>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-slate-700 mb-2">Batas Toleransi AQI (Indeks Udara BMKG)</label>
+                                    <select class="w-full border border-slate-300 rounded-lg p-3 text-sm text-slate-700 focus:ring-2 focus:ring-emerald-500 outline-none transition">
+                                        <option>Peringatan jika AQI > 100 (Kuning)</option>
+                                        <option selected>Peringatan jika AQI > 150 (Merah)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <hr class="border-slate-100">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-bold text-slate-800 text-sm">Otomatisasi Laporan Lab Lingkungan</h4>
+                                    <p class="text-xs text-slate-500 mt-1">Kirim tembusan otomatis (email/API) ke Dinas Lingkungan Hidup jika baku mutu air di bawah standar.</p>
+                                </div>
+                                <div class="w-12 h-6 bg-emerald-600 rounded-full relative cursor-pointer">
+                                    <div class="w-4 h-4 bg-white rounded-full absolute top-1 right-1 shadow-sm"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-red-50 p-6 rounded-xl border border-red-200 flex justify-between items-center">
+                        <div>
+                            <h4 class="font-bold text-red-800">Mode Darurat Ekosistem (Lockdown)</h4>
+                            <p class="text-sm text-red-600 mt-1">Hentikan sementara seluruh penerbitan tiket digital di daerah ini akibat cuaca ekstrem atau instruksi pusat.</p>
+                        </div>
+                        <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg transition shadow-sm whitespace-nowrap">
+                            Aktifkan Lockdown
+                        </button>
+                    </div>
+                </div>
+
+                <div x-show="activeTab === 'akses'" x-transition.opacity class="space-y-8" style="display: none;">
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                        <div class="p-6 border-b border-slate-100 bg-slate-50 flex justify-between items-center">
+                            <div>
+                                <h2 class="text-lg font-bold text-slate-800">Daftar Pengguna & Otorisasi Dinas</h2>
+                                <p class="text-sm text-slate-500 mt-1">Kelola siapa saja yang bisa memantau PAD dan data Ekologi daerah.</p>
+                            </div>
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded transition shadow-sm">
+                                + Undang Pegawai Baru
+                            </button>
+                        </div>
+                        <div class="p-0">
+                            <table class="w-full text-left text-sm border-collapse">
+                                <thead>
+                                    <tr class="bg-white text-slate-500 uppercase tracking-wider border-b border-slate-200">
+                                        <th class="p-4 font-bold">Nama Pegawai</th>
+                                        <th class="p-4 font-bold">Instansi</th>
+                                        <th class="p-4 font-bold">Tingkat Akses (Role)</th>
+                                        <th class="p-4 font-bold text-right">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100">
+                                    <tr class="hover:bg-slate-50 transition-colors">
+                                        <td class="p-4">
+                                            <p class="font-bold text-slate-800">Drs. Haryanto, M.Si</p>
+                                            <p class="text-xs text-slate-500 mt-1">haryanto.dispar@jatimprov.go.id</p>
+                                        </td>
+                                        <td class="p-4 font-medium text-slate-700">Dinas Pariwisata</td>
+                                        <td class="p-4">
+                                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-bold border border-blue-200">Kepala Dinas (Super Admin)</span>
+                                        </td>
+                                        <td class="p-4 text-right">
+                                            <button class="text-slate-400 hover:text-blue-600 font-medium">Edit</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50 transition-colors">
+                                        <td class="p-4">
+                                            <p class="font-bold text-slate-800">Fitri Amalia, S.E.</p>
+                                            <p class="text-xs text-slate-500 mt-1">fitri.keuangan@bpkad.go.id</p>
+                                        </td>
+                                        <td class="p-4 font-medium text-slate-700">BPKAD Daerah</td>
+                                        <td class="p-4">
+                                            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-bold border border-yellow-200">Admin Keuangan (PAD Only)</span>
+                                        </td>
+                                        <td class="p-4 text-right">
+                                            <button class="text-slate-400 hover:text-blue-600 font-medium">Edit</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50 transition-colors">
+                                        <td class="p-4">
+                                            <p class="font-bold text-slate-800">Dr. Ir. Kusuma Wardhani</p>
+                                            <p class="text-xs text-slate-500 mt-1">k.wardhani@dlh.go.id</p>
+                                        </td>
+                                        <td class="p-4 font-medium text-slate-700">Dinas Lingkungan Hidup</td>
+                                        <td class="p-4">
+                                            <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-xs font-bold border border-emerald-200">Admin Ekologi (EcoWatch)</span>
+                                        </td>
+                                        <td class="p-4 text-right">
+                                            <button class="text-slate-400 hover:text-blue-600 font-medium">Edit</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-end gap-4 mt-8 pt-4 border-t border-slate-200">
+                    <button class="px-6 py-2 border border-slate-300 rounded-lg text-slate-700 font-medium hover:bg-slate-50 transition">Batal Perubahan</button>
+                    <button class="px-6 py-2 bg-blue-600 rounded-lg text-white font-bold hover:bg-blue-700 transition shadow-sm">Simpan Kebijakan</button>
+                </div>
+
+            </div>
+        </main>
+    </div>
+</body>
+</html>
